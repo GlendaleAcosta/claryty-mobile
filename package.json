@@ -1,0 +1,36 @@
+{
+  "name": "claryty-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3100",
+  "devDependencies": {
+    "jest-expo": "25.0.0",
+    "react-native-scripts": "1.11.1",
+    "react-test-renderer": "16.2.0"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^25.0.0",
+    "react": "^16.2.0",
+    "react-native": "0.52.0",
+    "react-native-gesture-handler": "^1.0.0-alpha.40",
+    "react-native-material-kit": "^0.5.1",
+    "react-native-material-ripple": "^0.7.5",
+    "react-native-shadow": "^1.2.2",
+    "react-native-tab-view": "^0.0.74",
+    "react-native-vector-icons": "^4.5.0",
+    "react-navigation": "^1.0.0-beta.30",
+    "react-redux": "^5.0.6",
+    "redux-promise": "^0.5.3"
+  }
+}
