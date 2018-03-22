@@ -46,18 +46,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#fff',
-    height: 95, 
+    height: 95,
     alignSelf: 'stretch',
     flexDirection: 'row',
     paddingLeft: 10,
     paddingRight: 10,
-    shadowColor: '#A8A4A4',
-    shadowOpacity: .5,
-    shadowOffset: {
-      width: 0,
-      height: -3,
-    },
-    shadowRadius: 6,
     borderTopWidth: Platform.OS === 'ios' ? 0 : 1,
     borderColor: '#3778E8',
   },
@@ -70,7 +63,7 @@ const styles = StyleSheet.create({
   },
   iconText: {
     fontSize: 10,
-    color: '#3778E8', 
+    color: '#3778E8',
   }
 });
 

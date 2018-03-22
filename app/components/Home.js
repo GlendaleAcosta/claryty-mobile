@@ -14,8 +14,15 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <LinearGradient colors={['#16BAEC', '#6FD2B7']} style={styles.linearGradient}>
+        <LinearGradient colors={['#265A74', '#2C6A89']} style={styles.linearGradient}>
         <ScrollView style={styles.scrollView}>
+          <DrugCard {...this.props} />
+          <DrugCard {...this.props} />
+          <DrugCard {...this.props} />
+          <DrugCard {...this.props} />
+          <DrugCard {...this.props} />
+          <DrugCard {...this.props} />
+          <DrugCard {...this.props} />
           <DrugCard {...this.props} />
           <DrugCard {...this.props} />
           <DrugCard {...this.props} />

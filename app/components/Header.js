@@ -7,17 +7,17 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       searchQuery: '',
       search: {
         size: 30,
-        color: "#454545",
+        color: "#29617D",
       }
     };
   }
 
   handleSubmit = () => {
-    
+
   }
 
   render() {
@@ -30,14 +30,15 @@ class Header extends Component {
             style={{height: 40, flex: 1, marginLeft: 10, marginRight: 10}}
             clearTextOnFocus={true}
             underlineColorAndroid='#fff'
-            placeholder="Search Drugs"
+            placeholder="Search Medication"
+            placeholderTextColor="#6699B1"
             onChangeText={(searchQuery) => this.setState({searchQuery})}
             blurOnSubmit={true}
             value={this.state.text}
             onSubmitEditing={this.handleSubmit}
           />
         </View>
-        <Icon name="filter-list" size={30} color="#454545" />
+        <Icon name="menu" size={30} color={search.color} />
       </View>
     );
   }
@@ -59,6 +60,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#F3F3F3',
+    borderRadius: 35,
+    paddingLeft: 10,
+    marginRight: 10,
   }
 });
 

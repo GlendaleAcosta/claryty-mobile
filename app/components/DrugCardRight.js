@@ -7,16 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 class DrugCardRight extends Component {
   render() {
     return (
-      <View>
-        <View style={styles.drugCardInfo}>
-          <Icon name="warning" size={20} color="#FB6AEB"/>
-          <Text style={styles.riskRating}>Risk Rating: 3.5</Text>
-        </View>
-        <View style={styles.drugCardInfo}>
-          <Icon name="report" size={20} color="#FF7777"/>
-          <Text style={styles.reportedCases}>1,433 Reported Cases</Text>
-        </View>
-      </View>
+      <Text style={styles.riskRating}>3.5</Text>
     );
   }
 }
@@ -33,10 +24,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   riskRating: {
-    color: '#FB6AEB',
-    fontSize: 14,
+    color: '#2AFBB2',
+    fontSize: 18,
     marginLeft: 4,
     paddingBottom: 2,
+    marginRight: 10,
   },
   reportedCases: {
     color: '#FF7777',
