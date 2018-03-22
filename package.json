@@ -3,11 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3100",
-  "devDependencies": {
-    "jest-expo": "25.0.0",
-    "react-native-scripts": "1.11.1",
-    "react-test-renderer": "16.2.0"
-  },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
@@ -18,6 +13,11 @@
   },
   "jest": {
     "preset": "jest-expo"
+  },
+  "devDependencies": {
+    "jest-expo": "25.0.0",
+    "react-native-scripts": "1.11.1",
+    "react-test-renderer": "16.2.0"
   },
   "dependencies": {
     "expo": "^25.0.0",

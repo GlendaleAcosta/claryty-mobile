@@ -77,8 +77,6 @@ const styles = StyleSheet.create({
   barGraph: {
     backgroundColor: '#42DBA8',
     height: 30,
-    // width: 200,
-    // flex: 1,
     flexDirection: 'row',
     marginRight: 5,
     marginLeft: 5,
