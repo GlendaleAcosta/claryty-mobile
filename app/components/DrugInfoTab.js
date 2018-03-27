@@ -1,8 +1,9 @@
 //import liraries
 import React, { Component } from 'react';
-import { ScrollView, Text, StyleSheet } from 'react-native';
+import { ScrollView, Text, StyleSheet, Image, View } from 'react-native';
 import { getDrugInfo } from '../actions/drugActions';
 import { LinearGradient } from 'expo';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // create a component
 class DrugInfoTab extends Component {
@@ -36,9 +37,36 @@ class DrugInfoTab extends Component {
     return (
       <LinearGradient colors={['#265A74', '#2C6A89']} style={styles.linearGradient}>
         <ScrollView style={styles.container}>
-          <Text style={styles.drugName}>HUMIRA</Text>
-          <Text style={styles.drugName}>Adalimumab</Text>
+          <View style={styles.topContainer}>
+            <Image
+              style={styles.pill}
+              source={require('./pill.png')}
+            />
+            <View style={styles.titleContainer}>
+              <Text style={styles.drugName}>Humira</Text>
+              <Text style={styles.genericName}>Adalimumab</Text>
+            </View>
+          </View>
+          <Text style={styles.subjectTitle}>Summary:</Text>
           <Text style={styles.drugInfo}>{this.renderDrugInfo()}</Text>
+          <View style={styles.readMoreContainer}>
+            <Text style={styles.readMore}>Read More</Text>
+            <Icon name="arrow-forward" size={20} color="#A9D1FF" />
+          </View>
+
+          <Text style={styles.subjectTitle}>Used to Treat:</Text>
+          <Text style={styles.condition}>
+            Rheumatoid arthritis
+          </Text>
+          <Text style={styles.condition}>
+            Psoriatic arthritis
+          </Text>
+          <Text style={styles.condition}>
+            Ankylosing spondylitis
+          </Text>
+          <Text style={styles.condition}>
+            Crohn’s disease
+          </Text>
         </ScrollView>
       </LinearGradient>
     );
@@ -54,12 +82,20 @@ const styles = StyleSheet.create({
   },
   drugInfo: {
     color: '#fff',
-    fontSize: 16
+    fontSize: 16,
+    lineHeight: 27,
+    paddingBottom: 10,
   },
   drugName: {
     color: '#fff',
     fontSize: 32,
-    marginBottom: 10
+    fontWeight: 'bold'
+    // marginBottom: 7
+  },
+  genericName: {
+    color: '#F4F4F4',
+    fontSize: 24,
+    fontStyle: 'italic'
   },
   linearGradient: {
     flex: 1,
@@ -67,6 +103,48 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  titleContainer: {
+    marginLeft: 25,
+    flex: 1,
+  },
+  pill: {
+    height: 73,
+    width: 73,
+    padding: 5,
+  },
+  topContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 27
+  },
+  subjectTitle: {
+    color: '#fff',
+    fontSize: 18,
+    paddingBottom: 10,
+    fontWeight: 'bold'
+  },
+  readMoreContainer: {
+    // flex: 1,
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 27,
+  },
+  readMore: {
+    color: '#A9D1FF',
+    fontSize: 16,
+    marginRight: 10,
+  },
+  condition: {
+    backgroundColor: '#174558',
+    padding: 15,
+    flex: 1,
+    color: '#fff',
+    fontSize: 16,
+    marginTop: 10,
+    borderRadius: 6,
+  }
 });
 
 //make this component available to the app
