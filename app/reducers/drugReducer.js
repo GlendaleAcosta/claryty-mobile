@@ -11,9 +11,6 @@ export default function reducer(state = {
       };
     }
     case 'GET_DRUG_INFO': {
-      // console.log('@@@@@@@@@@@@@@@@@@@@@@@');
-      // console.log(action.payload);
-      // console.log('@@@@@@@@@@@@@@@@@@@@@@@');
       return { ...state, drugInfo: action.payload };
     }
     default: return state;

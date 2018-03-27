@@ -8,7 +8,7 @@ import { LinearGradient } from 'expo';
 class DrugInfoTab extends Component {
   constructor(props) {
     super(props);
-    props.dispatch(getDrugInfo('Aspirin'));
+    props.dispatch(getDrugInfo('Humira'));
 
   }
 
@@ -20,7 +20,7 @@ class DrugInfoTab extends Component {
       const size = drugInfo.length - 1;
       while(
         drugInfo.charAt(i) != ' '
-        && i < size 
+        && i < size
         && drugInfo.charAt(i) != ','
         && drugInfo.charAt(i) != ';'
       ) {
@@ -34,9 +34,10 @@ class DrugInfoTab extends Component {
 
   render() {
     return (
-      <LinearGradient colors={['#16BAEC', '#6FD2B7']} style={styles.linearGradient}>
+      <LinearGradient colors={['#265A74', '#2C6A89']} style={styles.linearGradient}>
         <ScrollView style={styles.container}>
-          <Text style={styles.drugName}>Humira (Adalimumab)</Text>
+          <Text style={styles.drugName}>HUMIRA</Text>
+          <Text style={styles.drugName}>Adalimumab</Text>
           <Text style={styles.drugInfo}>{this.renderDrugInfo()}</Text>
         </ScrollView>
       </LinearGradient>

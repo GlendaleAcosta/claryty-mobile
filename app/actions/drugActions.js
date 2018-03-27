@@ -29,11 +29,37 @@ export function getTop10Reactions(year, drugName) {
 }
 
 export function getDrugInfo(drugName) {
-  return fetch('https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=Aspirin')
+  return function (dispatch) {
+    return fetch('http://localhost:3100/api/drug-info', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        drugName: drugName,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        const drug = response;
+        return dispatch(fetchDrugInfo(response));
+      });
+    }
+}
+
+export function fetchDrugInfo(drug) {
+  let drugName;
+  if (drug.genericName.length === 0) {
+      drugName = drug.drugName;
+  } else {
+      drugName = drug.genericName;
+  }
+
+  drugName = drugName.toLowerCase();
+  return fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=${drugName}`)
       .then((response) => response.json())
       .then((responseJson) => {
-        // console.log("fetch worked");
-        // console.log(responseJson);
         const pages = responseJson.query.pages;
         const drugInfo = pages[Object.keys(pages)[0]].extract;
         return {
