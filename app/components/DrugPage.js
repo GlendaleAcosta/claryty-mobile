@@ -27,7 +27,10 @@ class DrugPage extends Component {
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => <TabBar {...props} />;
+  _renderHeader = props => {
+
+    return <TabBar {...props} style={styles.tabBar}/>
+  }
 
 
   _renderScene = ({ route }) => {
@@ -40,7 +43,7 @@ class DrugPage extends Component {
       return null;
     }
   }
-  
+
   render() {
     return (
       <TabViewAnimated
@@ -63,6 +66,9 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     backgroundColor: '#2c3e50',
   },
+  tabBar: {
+    backgroundColor: '#174558',
+  }
 });
 
 //make this component available to the app

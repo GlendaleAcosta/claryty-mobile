@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     lineHeight: 27,
-    paddingBottom: 10,
+    paddingBottom: 14,
   },
   drugName: {
     color: '#fff',
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 27,
+    paddingBottom: 24,
   },
   readMore: {
     color: '#A9D1FF',

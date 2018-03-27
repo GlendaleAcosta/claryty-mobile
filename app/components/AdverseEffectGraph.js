@@ -25,6 +25,7 @@ class AdverseEffectGraph extends Component {
   }
 
   render() {
+    const {id, name, cases} = this.props;
     return (
       <Ripple
         onPress={this.showDemographics}
@@ -32,12 +33,11 @@ class AdverseEffectGraph extends Component {
         <View style={styles.container}>
           <View style={styles.cardTop}>
             <View style={styles.cardTopLabel}>
-              <Text style={styles.AEText}>Death:</Text>
-              <Text style={styles.casesText}>450 cases</Text>
+              <Text style={styles.AEText}>{id}. {name}</Text>
+              <Text style={styles.casesText}>{cases}</Text>
             </View>
-            <Icon name="arrow-drop-down" size={30} color="#454545"/>
+            <Icon name="arrow-drop-down" size={25} color="#fff"/>
           </View>
-          <View style={styles.barGraph} />
         </View>
         {this.renderDemographics()}
       </Ripple>
@@ -49,9 +49,10 @@ class AdverseEffectGraph extends Component {
 const styles = StyleSheet.create({
   container: {
     // alignItems: 'center',
-    backgroundColor: '#fff',
-    marginLeft: 10,
-    marginRight: 10,
+    flex: 1,
+    backgroundColor: '#174558',
+    padding: 5,
+    marginBottom: 6,
   },
   cardTop: {
     justifyContent: 'space-between',
@@ -60,19 +61,23 @@ const styles = StyleSheet.create({
     padding: 5
   },
   cardTopLabel: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     marginTop: 5,
     marginBottom: 5
   },
   AEText: {
     fontSize: 16,
-    color: '#2391CE',
+    color: '#fff',
     marginRight: 5
   },
   casesText: {
     fontSize: 16,
-    color: '#DF5947'
+    color: '#FF7676',
+    fontWeight: 'bold',
+    marginRight: 10,
   },
   barGraph: {
     backgroundColor: '#42DBA8',

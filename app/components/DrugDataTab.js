@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { ScrollView, Text, StyleSheet, Picker } from 'react-native';
+import { ScrollView, Text, StyleSheet, Picker, View } from 'react-native';
 import { getTop10Reactions } from '../actions/drugActions';
 import Dropdown from './Dropdown';
 import AdverseEffectGraph from './AdverseEffectGraph';
@@ -35,23 +35,44 @@ class DrugDataTab extends Component {
     : null
   }
 
+  renderAdverseEffects = () => {
+    const adverseEffects = [
+      {id: 1, name: 'Chronic Pain', cases: 1436},
+      {id: 2, name: 'Severe Cough', cases: 1285},
+      {id: 3, name: 'Severe Headache', cases: 902},
+      {id: 4, name: 'Back Pain', cases: 690},
+      {id: 5, name: 'Death', cases: 503},
+      {id: 6, name: 'Drowsiness', cases: 468},
+      {id: 7, name: 'Severe Confusion', cases: 455},
+      {id: 8, name: 'Depression', cases: 385},
+      {id: 9, name: 'Hunger for brains', cases: 89},
+      {id: 10, name: 'Itchy Scalp', cases: 35}
+    ]
+    return adverseEffects.map((effect) => {
+      return <AdverseEffectGraph
+        key={effect.id}
+        id={effect.id}
+        name={effect.name}
+        cases={effect.cases}
+      />
+    })
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
+        <Text style={styles.drugName}>Humira</Text>
         <Text style={styles.textStyle}>Choose Year: </Text>
         <Dropdown fn={this.chooseYear} >
           2015 Data
         </Dropdown>
-        <AdverseEffectGraph />
-        <AdverseEffectGraph />
-        <AdverseEffectGraph />
-        <AdverseEffectGraph />
-        <AdverseEffectGraph />
-        <AdverseEffectGraph />
-        <AdverseEffectGraph />
-        <AdverseEffectGraph />
-        <AdverseEffectGraph />
-        <AdverseEffectGraph />
+        <Text style={styles.subjectTitle}>Top 10 Adverse Effects:</Text>
+        <View style={styles.categoryContainer}>
+          <Text style={styles.category}>Adverse Effect</Text>
+          <Text style={styles.categoryRight}># of Cases</Text>
+        </View>
+        {this.renderAdverseEffects()}
+
         {this.renderPicker()}
       </ScrollView>
     );
@@ -62,16 +83,24 @@ class DrugDataTab extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2c3e50',
-    position: 'relative'
+    backgroundColor: '#265A74',
+    position: 'relative',
+    padding: 10,
+  },
+  drugName: {
+    color: '#fff',
+    fontSize: 32,
+    fontWeight: 'bold',
+    paddingBottom: 15
+    // marginBottom: 7
   },
   textStyle: {
     color: '#fff',
     fontSize: 16,
     marginTop: 5,
     marginBottom: 5,
-    marginLeft: 10,
-    marginRight: 10
+    // marginLeft: 10,
+    // marginRight: 10
   },
   picker: {
     backgroundColor: 'rgba(255,255,255,1)',
@@ -79,6 +108,33 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     left: 0
+  },
+  subjectTitle: {
+    color: '#fff',
+    fontSize: 19,
+    paddingTop: 20,
+    paddingBottom: 8,
+    fontWeight: 'bold'
+  },
+  categoryContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 10,
+  },
+  category: {
+    color: '#fff',
+    fontSize: 16,
+    paddingBottom: 10,
+    fontWeight: 'bold',
+    marginLeft: 10,
+  },
+  categoryRight: {
+    color: '#fff',
+    fontSize: 16,
+    paddingBottom: 10,
+    fontWeight: 'bold',
+    marginRight: 20,
   },
   itemStyle: {
   }
