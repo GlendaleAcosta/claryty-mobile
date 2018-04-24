@@ -19,8 +19,8 @@ class DrugCard extends Component {
   }
 
   render() {
-    const { drugName } = this.props.drug;
-    console.log(this.props);
+    let { drugName } = this.props.drug;
+    drugName = drugName[0] + drugName.substring(1, drugName.length).toLowerCase();
     return (
       <Ripple onPress={this.selectDrug} >
         <View style={styles.container} >
