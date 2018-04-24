@@ -36,35 +36,42 @@ class DrugDataTab extends Component {
   }
 
   renderAdverseEffects = () => {
-    const adverseEffects = [
-      {id: 1, name: 'Chronic Pain', cases: 1436},
-      {id: 2, name: 'Severe Cough', cases: 1285},
-      {id: 3, name: 'Severe Headache', cases: 902},
-      {id: 4, name: 'Back Pain', cases: 690},
-      {id: 5, name: 'Death', cases: 503},
-      {id: 6, name: 'Drowsiness', cases: 468},
-      {id: 7, name: 'Severe Confusion', cases: 455},
-      {id: 8, name: 'Depression', cases: 385},
-      {id: 9, name: 'Hunger for brains', cases: 89},
-      {id: 10, name: 'Itchy Scalp', cases: 35}
-    ]
-    return adverseEffects.map((effect) => {
+    const { adverseEffects } = this.props.drugReducer;
+    // const adverseEffects = [
+    //   {id: 1, name: 'Chronic Pain', cases: 1436},
+    //   {id: 2, name: 'Severe Cough', cases: 1285},
+    //   {id: 3, name: 'Severe Headache', cases: 902},
+    //   {id: 4, name: 'Back Pain', cases: 690},
+    //   {id: 5, name: 'Death', cases: 503},
+    //   {id: 6, name: 'Drowsiness', cases: 468},
+    //   {id: 7, name: 'Severe Confusion', cases: 455},
+    //   {id: 8, name: 'Depression', cases: 385},
+    //   {id: 9, name: 'Hunger for brains', cases: 89},
+    //   {id: 10, name: 'Itchy Scalp', cases: 35}
+    // ]
+    return adverseEffects.length > 0 ? adverseEffects.map((effect, i) => {
+      console.log(i);
       return <AdverseEffectGraph
+        index={i}
         key={effect.id}
         id={effect.id}
-        name={effect.name}
-        cases={effect.cases}
+        name={effect.reaction}
+        occurrences={effect.occurrences}
       />
     })
+    : null;
   }
 
   render() {
+    console.log(this.props);
+    const { currentDrug } = this.props.drugReducer;
+    // currentDrug = currentDrug[0] + currentDrug.substring(1, currentDrug.length).toLowerCase();
     return (
       <ScrollView style={styles.container}>
-        <Text style={styles.drugName}>Humira</Text>
+        <Text style={styles.drugName}>{currentDrug}</Text>
         <Text style={styles.textStyle}>Choose Year: </Text>
         <Dropdown fn={this.chooseYear} >
-          2015 Data
+          2017 Data
         </Dropdown>
         <Text style={styles.subjectTitle}>Top 10 Adverse Effects:</Text>
         <View style={styles.categoryContainer}>

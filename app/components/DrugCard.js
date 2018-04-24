@@ -4,18 +4,20 @@ import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import DrugCardRight from './DrugCardRight';
 import Ripple from 'react-native-material-ripple';
+import { getAdverseEffects } from '../actions/drugActions';
+
 // create a component
 class DrugCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      tempDrugName: 'Humira'
-    }
   }
 
   selectDrug = () => {
+    let { drugName } = this.props.drug;
+    drugName = drugName[0] + drugName.substring(1, drugName.length).toLowerCase();
     const { navigate } = this.props.navigation;
-    navigate('DrugPage', { drugName: this.state.tempDrugName });
+    this.props.dispatch(getAdverseEffects(drugName));
+    navigate('DrugPage', { drugName: drugName });
   }
 
   render() {

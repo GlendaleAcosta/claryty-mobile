@@ -34,9 +34,10 @@ class DrugPage extends Component {
 
 
   _renderScene = ({ route }) => {
+    const { adverseEffects } = this.props.drugReducer;
     switch (route.key) {
       case 'first':
-        return <DrugDataTab {...this.props} />;
+        return adverseEffects.length > 0 ? <DrugDataTab {...this.props} /> : null;
       case 'second':
         return <DrugInfoTab {...this.props} />;
     default:

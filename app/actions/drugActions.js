@@ -12,6 +12,27 @@ function drugsFetched (drugs) {
   }
 }
 
+function fetchingAdverseEffects () {
+  return {
+    type: 'FETCHING_ADVERSE_EFFECTS',
+    payload: null
+  }
+}
+
+function adverseEffectsFetched (adverseEffects) {
+  return {
+    type: 'ADVERSE_EFFECTS_FETCHED',
+    payload: adverseEffects
+  }
+}
+
+function setCurrentDrug(drugName) {
+  return {
+    type: 'SET_CURRENT_DRUG',
+    payload: drugName
+  }
+}
+
 export function getTop10Reactions(year, drugName) {
   return fetch('http://localhost:3100/api/reactions', {
     method: 'POST',
@@ -87,7 +108,7 @@ export function fetchDrugInfo(drug) {
 }
 
 
-export function searchDrug(drug){
+export function searchDrug(drugName){
   return function (dispatch) {
     dispatch(fetchingDrugs());
     return fetch('http://localhost:3100/api/drug', {
@@ -97,13 +118,41 @@ export function searchDrug(drug){
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        drugName: drug,
+        drugName: drugName,
       }),
     })
     .then((response) => response.json())
     .then((responseJson) => {
       const drug = [responseJson];
       dispatch(drugsFetched(drug));
+    })
+    .catch((error) => {
+      console.log("fetch failed");
+      console.error(error);
+    });
+  }
+}
+
+export function getAdverseEffects(drugName, year) {
+  return function (dispatch) {
+    dispatch(fetchingAdverseEffects());
+    return fetch('http://localhost:3100/api/adverse-effects', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        year: 2017,
+        drugName: drugName,
+      }),
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+      const { data } = responseJson
+      dispatch(adverseEffectsFetched(data));
+      dispatch(setCurrentDrug(drugName));
     })
     .catch((error) => {
       console.log("fetch failed");

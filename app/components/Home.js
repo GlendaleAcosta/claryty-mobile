@@ -20,7 +20,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { drugs } = this.props.drugReducer;
     return (
       <View style={styles.container}>

@@ -3,7 +3,10 @@ export default function reducer(state = {
   drugInfo: "Loading...",
   drugs: [],
   fetchingsDrugs: false,
-  fetchingDrugInfo: false
+  fetchingDrugInfo: false,
+  fetchingAdverseEffects: false,
+  adverseEffects: [],
+  currentDrug: null,
   // year: 15,
 }, action) {
   switch (action.type) {
@@ -13,8 +16,22 @@ export default function reducer(state = {
         top10Reactions: action.payload.top10Reactions,
       };
     }
+
     case 'GET_DRUG_INFO': {
       return { ...state, drugInfo: action.payload };
+    }
+    case 'FETCHING_ADVERSE_EFFECTS': {
+      return {
+        ...state,
+        fetchingAdverseEffects: true
+      }
+    }
+    case 'ADVERSE_EFFECTS_FETCHED': {
+      return {
+        ...state,
+        fetchingAdverseEffects: false,
+        adverseEffects: action.payload
+      }
     }
     case 'DRUGS_FETCHED': {
       return {
@@ -24,10 +41,15 @@ export default function reducer(state = {
       }
     }
     case 'FETCHING_DRUGS': {
-      console.log('@@@@@@@');
       return {
         ...state,
         fetchingDrugs: true
+      }
+    }
+    case 'SET_CURRENT_DRUG': {
+      return {
+        ...state,
+        currentDrug: action.payload
       }
     }
     default: return state;

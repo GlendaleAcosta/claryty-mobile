@@ -25,7 +25,7 @@ class AdverseEffectGraph extends Component {
   }
 
   render() {
-    const {id, name, cases} = this.props;
+    const {id, name, occurrences, index} = this.props;
     return (
       <Ripple
         onPress={this.showDemographics}
@@ -33,8 +33,8 @@ class AdverseEffectGraph extends Component {
         <View style={styles.container}>
           <View style={styles.cardTop}>
             <View style={styles.cardTopLabel}>
-              <Text style={styles.AEText}>{id}. {name}</Text>
-              <Text style={styles.casesText}>{cases}</Text>
+              <Text style={styles.AEText}>{index + 1}. {name}</Text>
+              <Text style={styles.casesText}>{occurrences}</Text>
             </View>
             <Icon name="arrow-drop-down" size={25} color="#fff"/>
           </View>
