@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Header from '../components/Header';
+import { connect } from 'react-redux';
 
 // create a component
 class HeaderContainer extends Component {
@@ -12,10 +13,16 @@ class HeaderContainer extends Component {
 
   render() {
     return (
-      <Header />
+      <Header {...this.props} />
     );
   }
 }
 
 //make this component available to the app
-export default HeaderContainer;
+function mapStateToProps(state) {
+  return {
+    drugReducer: state.drugReducer
+  };
+}
+
+export default connect(mapStateToProps)(HeaderContainer);

@@ -11,26 +11,22 @@ class Home extends Component {
     super(props);
   }
 
+  renderCards = () => {
+    const { drugs } = this.props.drugReducer;
+    return drugs ? drugs.map((drug) => {
+      return <DrugCard key={drug.primaryid} drug={drug} {...this.props}  />
+    })
+    : null;
+  }
+
   render() {
+    console.log(this.props);
+    const { drugs } = this.props.drugReducer;
     return (
       <View style={styles.container}>
         <LinearGradient colors={['#265A74', '#2C6A89']} style={styles.linearGradient}>
         <ScrollView style={styles.scrollView}>
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
-          <DrugCard {...this.props} />
+          {this.renderCards()}
         </ScrollView>
         </LinearGradient>
       </View>

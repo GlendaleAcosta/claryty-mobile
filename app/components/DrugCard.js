@@ -19,10 +19,12 @@ class DrugCard extends Component {
   }
 
   render() {
+    const { drugName } = this.props.drug;
+    console.log(this.props);
     return (
       <Ripple onPress={this.selectDrug} >
         <View style={styles.container} >
-          <Text style={styles.drugName}>{this.state.tempDrugName}</Text>
+          <Text style={styles.drugName}>{drugName}</Text>
           <DrugCardRight />
           <Icon name="keyboard-arrow-right" size={30} color="#fff"/>
         </View>

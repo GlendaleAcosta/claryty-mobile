@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Home from '../components/Home';
 import HeaderContainer from './HeaderContainer';
+import { connect } from 'react-redux';
 
 // create a component
 class HomeContainer extends Component {
@@ -12,15 +13,14 @@ class HomeContainer extends Component {
 
   static navigationOptions = {
     headerTitle: <HeaderContainer />,
-    headerStyle: { 
+    headerStyle: {
       backgroundColor: '#fff',
       height: 55,
     },
-    headerTitleStyle: { 
+    headerTitleStyle: {
       color: 'green',
     },
   }
-
 
   render() {
     return (
@@ -40,4 +40,9 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default HomeContainer;
+function mapStateToProps(state) {
+  return {
+    drugReducer: state.drugReducer,
+  };
+}
+export default connect(mapStateToProps)(HomeContainer);

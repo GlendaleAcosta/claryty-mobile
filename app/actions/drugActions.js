@@ -1,3 +1,16 @@
+function fetchingDrugs () {
+  return {
+    type: 'FETCHING_DRUGS',
+    payload: null,
+  };
+}
+
+function drugsFetched (drugs) {
+  return {
+    type: 'DRUGS_FETCHED',
+    payload: drugs,
+  }
+}
 
 export function getTop10Reactions(year, drugName) {
   return fetch('http://localhost:3100/api/reactions', {
@@ -71,4 +84,30 @@ export function fetchDrugInfo(drug) {
         console.log("fetch failed");
         console.error(error);
       });
+}
+
+
+export function searchDrug(drug){
+  return function (dispatch) {
+    dispatch(fetchingDrugs());
+    return fetch('http://localhost:3100/api/drug', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        drugName: drug,
+      }),
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      const drug = [responseJson];
+      dispatch(drugsFetched(drug));
+    })
+    .catch((error) => {
+      console.log("fetch failed");
+      console.error(error);
+    });
+  }
 }

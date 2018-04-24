@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { searchDrug } from '../actions/drugActions';
 
 // create a component
 class Header extends Component {
@@ -17,7 +18,7 @@ class Header extends Component {
   }
 
   handleSubmit = () => {
-
+    this.props.dispatch(searchDrug(this.state.searchQuery));
   }
 
   render() {
