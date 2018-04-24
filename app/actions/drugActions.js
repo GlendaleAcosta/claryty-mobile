@@ -26,10 +26,12 @@ function adverseEffectsFetched (adverseEffects) {
   }
 }
 
-function setCurrentDrug(drugName) {
+export function setCurrentDrug(drug) {
+  drug.drugName = drug.drugName[0] + drug.drugName.substring(1, drug.drugName.length).toLowerCase();
+  drug.genericName = drug.genericName[0] + drug.genericName.substring(1, drug.genericName.length).toLowerCase();
   return {
     type: 'SET_CURRENT_DRUG',
-    payload: drugName
+    payload: drug
   }
 }
 
@@ -64,7 +66,7 @@ export function getTop10Reactions(year, drugName) {
 
 export function getDrugInfo(drugName) {
   return function (dispatch) {
-    return fetch('http://localhost:3100/api/drug-info', {
+    return fetch('http://localhost:3100/api/drug', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -82,18 +84,11 @@ export function getDrugInfo(drugName) {
     }
 }
 
-export function fetchDrugInfo(drug) {
-  let drugName;
-  if (drug.genericName.length === 0) {
-      drugName = drug.drugName;
-  } else {
-      drugName = drug.genericName;
-  }
-
-  drugName = drugName.toLowerCase();
-  return fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=${drugName}`)
+export function fetchDrugInfo(genericName) {
+  return fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=${genericName}`)
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson);
         const pages = responseJson.query.pages;
         const drugInfo = pages[Object.keys(pages)[0]].extract;
         return {
@@ -152,7 +147,6 @@ export function getAdverseEffects(drugName, year) {
       console.log(responseJson);
       const { data } = responseJson
       dispatch(adverseEffectsFetched(data));
-      dispatch(setCurrentDrug(drugName));
     })
     .catch((error) => {
       console.log("fetch failed");

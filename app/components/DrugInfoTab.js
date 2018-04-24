@@ -9,8 +9,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 class DrugInfoTab extends Component {
   constructor(props) {
     super(props);
-    props.dispatch(getDrugInfo('Humira'));
-
   }
 
   renderDrugInfo = () => {
@@ -34,7 +32,8 @@ class DrugInfoTab extends Component {
   }
 
   render() {
-    return (
+    const { drugInfo, currentDrug } = this.props.drugReducer;
+    return drugInfo ? (
       <LinearGradient colors={['#265A74', '#2C6A89']} style={styles.linearGradient}>
         <ScrollView style={styles.container}>
           <View style={styles.topContainer}>
@@ -43,8 +42,8 @@ class DrugInfoTab extends Component {
               source={require('./pill.png')}
             />
             <View style={styles.titleContainer}>
-              <Text style={styles.drugName}>Humira</Text>
-              <Text style={styles.genericName}>Adalimumab</Text>
+              <Text style={styles.drugName}>{currentDrug.drugName}</Text>
+              <Text style={styles.genericName}>{currentDrug.genericName}</Text>
             </View>
           </View>
           <Text style={styles.subjectTitle}>Summary:</Text>
@@ -69,7 +68,7 @@ class DrugInfoTab extends Component {
           </Text>
         </ScrollView>
       </LinearGradient>
-    );
+    ) : null;
   }
 }
 

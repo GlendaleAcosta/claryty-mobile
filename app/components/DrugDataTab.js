@@ -64,11 +64,11 @@ class DrugDataTab extends Component {
 
   render() {
     console.log(this.props);
-    const { currentDrug } = this.props.drugReducer;
+    const { currentDrug, fetchingAdverseEffects } = this.props.drugReducer;
     // currentDrug = currentDrug[0] + currentDrug.substring(1, currentDrug.length).toLowerCase();
-    return (
+    return !fetchingAdverseEffects ? (
       <ScrollView style={styles.container}>
-        <Text style={styles.drugName}>{currentDrug}</Text>
+        <Text style={styles.drugName}>{currentDrug.drugName}</Text>
         <Text style={styles.textStyle}>Choose Year: </Text>
         <Dropdown fn={this.chooseYear} >
           2017 Data
@@ -82,7 +82,7 @@ class DrugDataTab extends Component {
 
         {this.renderPicker()}
       </ScrollView>
-    );
+    ) : null;
   }
 }
 

@@ -1,6 +1,6 @@
 export default function reducer(state = {
   top10Reactions: null,
-  drugInfo: "Loading...",
+  drugInfo: null,
   drugs: [],
   fetchingsDrugs: false,
   fetchingDrugInfo: false,
