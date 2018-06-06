@@ -11,6 +11,7 @@ import {
 import HomeContainer from './app/containers/HomeContainer';
 import DrugPageContainer from './app/containers/DrugPageContainer';
 import BottomNavContainer from './app/containers/BottomNavContainer';
+import RegistrationContainer from './app/containers/RegistrationContainer';
 
 const middleware = applyMiddleware(thunk, reduxPromise);
 const store = createStore(reducers, middleware);

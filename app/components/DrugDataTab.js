@@ -16,9 +16,9 @@ class DrugDataTab extends Component {
   }
 
   chooseYear = () => {
-    this.setState({
-      openPicker: true
-    })
+    // this.setState({
+    //   openPicker: true
+    // })
   }
 
   renderPicker = () => {

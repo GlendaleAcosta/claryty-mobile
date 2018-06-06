@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Home from '../components/Home';
 import HeaderContainer from './HeaderContainer';
 import { connect } from 'react-redux';
+import RegistrationContainer from './RegistrationContainer';
 
 // create a component
 class HomeContainer extends Component {
@@ -23,9 +24,10 @@ class HomeContainer extends Component {
   }
 
   render() {
-    return (
-      <Home {...this.props} />
-    );
+    const { user } = this.props.userReducer;
+    return user
+      ? <Home {...this.props} />
+      : <RegistrationContainer {...this.props} />
   }
 }
 
@@ -43,6 +45,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     drugReducer: state.drugReducer,
+    userReducer: state.userReducer
   };
 }
 export default connect(mapStateToProps)(HomeContainer);

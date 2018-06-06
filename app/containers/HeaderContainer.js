@@ -12,16 +12,18 @@ class HeaderContainer extends Component {
   }
 
   render() {
-    return (
+    const { user } = this.props.userReducer;
+    return user ? (
       <Header {...this.props} />
-    );
+    ) : null;
   }
 }
 
 //make this component available to the app
 function mapStateToProps(state) {
   return {
-    drugReducer: state.drugReducer
+    drugReducer: state.drugReducer,
+    userReducer: state.userReducer
   };
 }
 

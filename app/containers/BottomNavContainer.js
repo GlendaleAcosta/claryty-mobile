@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BottomNav from '../components/BottomNav';
+import { connect } from 'react-redux';
 
 // create a component
 class BottomNavContainer extends Component {
@@ -11,16 +12,22 @@ class BottomNavContainer extends Component {
   }
 
   render() {
-    return (
+    const { user } = this.props.userReducer;
+    return user ? (
       <BottomNav {...this.props} />
-    );
+    ): null
   }
 }//
 
 // define your styles
 const styles = StyleSheet.create({
-  
-}); 
 
-//make this component available to the app
-export default BottomNavContainer;
+});
+
+function mapStateToProps(state) {
+  return {
+    drugReducer: state.drugReducer,
+    userReducer: state.userReducer
+  };
+}
+export default connect(mapStateToProps)(BottomNavContainer);
